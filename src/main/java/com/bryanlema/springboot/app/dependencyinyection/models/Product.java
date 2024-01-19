@@ -1,6 +1,6 @@
 package com.bryanlema.springboot.app.dependencyinyection.models;
 
-public class Product {
+public class Product implements Cloneable {
     private Long id;
     private String name;
     private Long price;
@@ -34,5 +34,13 @@ public class Product {
         this.price = price;
     }
 
+    @Override
+    public Object clone() {
+        try {
+            return super.clone();
+        } catch (CloneNotSupportedException e) {
+            return new Product(this.id, this.name, this.price);
+        }
+    }
     
 }
